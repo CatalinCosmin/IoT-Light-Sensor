@@ -8,7 +8,7 @@ The main goal is to encourage better lighting conditions during screen use and h
 ## Schematics Plan
 The schematic below shows the current hardware plan for the project.
 
-![IoT Light Monitoring System Schematics](monitor-schematics.png)
+![IoT Light Monitoring System Schematics](schematics.png)
 
 ### Pin connections
 #### ESP32 ↔ Light sensor module
