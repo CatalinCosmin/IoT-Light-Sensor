@@ -5,22 +5,35 @@ This project is an IoT-based light monitoring system built with an ESP32, a ligh
 
 The main goal is to encourage better lighting conditions during screen use and help reduce eye strain. The current implementation focuses on local monitoring and visual feedback, while the next step is to add stronger alert mechanisms and optional remote notifications.
 
+### Board and schematic note
+The firmware and wiring target an **ESP32 XX5R69** development board. The schematic diagram uses an **ESP32-C6** symbol only because of limitations in the schematic software (the part library did not offer a better match for this PCB). The real build uses the **XX5R69** board, not an ESP32-C6.
+
+**Actual wiring on the assembled board** (labels as on the modules):
+
+| Connection | ESP32 pin |
+|------------|-----------|
+| Light sensor **AO** | **D2** (GPIO 2) |
+| OLED **MO** | **D22** |
+| OLED **TX** | **D23** |
+
+Power and ground follow the same net names as in the diagram (**3.3V**, **GND**).
+
 ## Schematics Plan
 The schematic below shows the current hardware plan for the project.
 
 ![IoT Light Monitoring System Schematics](schematics.png)
 
-### Pin connections
+### Pin connections (reference — diagram uses ESP32-C6 symbol; see board note above)
 #### ESP32 ↔ Light sensor module
 - **3.3V** → **VCC**
 - **GND** → **GND**
-- **GPIO 2 (analog read)** → **AO**
+- **D2 (GPIO 2, analog read)** ↔ **AO**
 
 #### ESP32 ↔ 0.96" OLED display (I2C)
 - **3.3V** → **VCC**
 - **GND** → **GND**
-- **GPIO 21** → **SDA**
-- **GPIO 22** → **SCL**
+- **D22** ↔ **MO**
+- **D23** ↔ **TX**
 
 #### Optional extension components
 - **GPIO 25** → LED indicator (through a **220Ω** resistor)
@@ -29,9 +42,7 @@ The schematic below shows the current hardware plan for the project.
 ## Pre-requisites
 
 ### Hardware components
-- **ESP32 development board**  
-  Example: ESP32 DevKit 
-  Specification page: <https://www.espressif.com/en/products/socs/esp32>
+- **ESP32 XX5R69 development board** (same family as in the build; schematic diagram shows ESP32-C6 only as a stand-in—see *Board and schematic note* above)
 
 - **0.96-inch OLED display (SSD1306, I2C, 128x64)**  
   Example controller page: <https://www.adafruit.com/product/326>
